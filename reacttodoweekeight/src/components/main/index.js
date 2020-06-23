@@ -17,7 +17,7 @@ export default function Main(props) {
                 <fieldset>
                     <legend>Difficulty</legend>
                     <label for="easier">1</label>
-                    <input type="radio" name="difficulty" value="1" id="easier" checked="checked" />
+                    <input type="radio" name="difficulty" value="1" id="easier" required/>
                     <label for="easy">2</label>
                     <input type="radio" name="difficulty" value="2" id="easy" />
                     <label for="med">3</label>
