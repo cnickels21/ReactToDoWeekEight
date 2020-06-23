@@ -14,7 +14,7 @@ export default function Main() {
         e.preventDefault();
 
         setCount(count + 1);
-        
+
         let newTasks = [...tasks, { title, completed: false }];
         setTasks(newTasks);
         e.target.reset();
@@ -53,7 +53,7 @@ export default function Main() {
                 <ul>
                     {tasks.map((task, index) => (
                         <li>
-                            <span>{index + 1}. {task.title} - {task.assignee} Completed: {task.completed.toString()}  </span>
+                            <span>{index + 1}. {task.title} - {assignee} Completed: {task.completed.toString()}  </span>
                             <button>Toggle Completion</button>
                         </li>
                     ))}
