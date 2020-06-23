@@ -27,11 +27,11 @@ export default function Main(props) {
                 <h3>Add to your list!</h3>
                 <div id="task-item">
                     <label for="task">What's your task? </label>
-                    <input required type="text" default="What's your task?" id="task" onChange={updateTitle}></input>
+                    <input required type="text" id="task" onChange={updateTitle}></input>
                 </div>
                 <div id="assigned-to">
                     <label for="assignee">Who's responsibility? </label>
-                    <input required type="text" default="What's your task?" id="assignee" ></input>
+                    <input required type="text" id="assignee" ></input>
                 </div>
                 <fieldset>
                     <legend>Difficulty</legend>
@@ -48,7 +48,8 @@ export default function Main(props) {
                 </fieldset>
                 <button type="submit" onSubmit={saveTask}>Add Task</button>
             </form>
-            <div id="task-list">
+
+            <div id="todo-list">
                 <h3>Task List: {count} items to complete</h3>
                 <ul>
                     {tasks.map((task, index) => (
