@@ -6,16 +6,15 @@ export default function Main(props) {
     let [count, setCount] = useState(taskCount);
     let [title, setTitle] = useState("");
     let [tasks, setTasks] = useState([]);
-    // Not using this yet
-    // let [assignee, setAssignee] = useState('');
+    let [assignee, setAssignee] = useState('');
 
     const updateTitle = e => setTitle(e.target.value);
+    const updateAssignee = e => setAssignee(e.target.value);
+    const updateCount = () => setCount(count + 1);
+
 
     const saveTask = e => {
         e.preventDefault();
-
-        setCount(count + 1);
-
         let newTasks = [...tasks, { title, completed: false }];
         setTasks(newTasks);
         e.target.reset();
@@ -31,7 +30,7 @@ export default function Main(props) {
                 </div>
                 <div id="assigned-to">
                     <label>Who's responsibility? </label>
-                    <input required type="text" id="assignee" ></input>
+                    <input required type="text" id="assignee" onChange={updateAssignee}></input>
                 </div>
                 <fieldset>
                     <legend>Difficulty</legend>
@@ -46,7 +45,7 @@ export default function Main(props) {
                     <label>5</label>
                     <input type="radio" name="difficulty" value="5" id="harder" />
                 </fieldset>
-                <button type="submit">Add Task</button>
+                <button type="submit" onSubmit={updateCount}>Add Task</button>
             </form>
 
             <div id="todo-list">
@@ -54,7 +53,7 @@ export default function Main(props) {
                 <ul>
                     {tasks.map((task, index) => (
                         <li>
-                            {index + 1}. {task.title} - {task.assignee} Completed: {task.completed.toString()} 
+                            <span>{index + 1}. {task.title} - {task.assignee} Completed: {task.completed.toString()}  </span>
                             <button>Toggle Completion</button>
                         </li>
                     ))}
