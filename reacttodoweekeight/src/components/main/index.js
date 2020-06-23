@@ -23,7 +23,7 @@ export default function Main(props) {
 
     return (
         <main>
-            <form>
+            <form onSubmit={saveTask}>
                 <h3>Add to your list!</h3>
                 <div id="task-item">
                     <label>What's your task? </label>
@@ -46,7 +46,7 @@ export default function Main(props) {
                     <label>5</label>
                     <input type="radio" name="difficulty" value="5" id="harder" />
                 </fieldset>
-                <button type="submit" onSubmit={saveTask}>Add Task</button>
+                <button type="submit">Add Task</button>
             </form>
 
             <div id="todo-list">
@@ -54,7 +54,7 @@ export default function Main(props) {
                 <ul>
                     {tasks.map((task, index) => (
                         <li>
-                            {task.title} - {task.assignee} (Completed: {task.completed.toString()})
+                            {index + 1}. {task.title} - {task.assignee} Completed: {task.completed.toString()} 
                             <button>Toggle Completion</button>
                         </li>
                     ))}
