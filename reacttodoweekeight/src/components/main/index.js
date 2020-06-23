@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 
-export default function Main(props) {
-    const { taskCount = 0 } = props;
-
-    let [count, setCount] = useState(taskCount);
+export default function Main() {
+    let [count, setCount] = useState(0);
     let [title, setTitle] = useState("");
     let [tasks, setTasks] = useState([]);
     let [assignee, setAssignee] = useState('');
 
     const updateTitle = e => setTitle(e.target.value);
     const updateAssignee = e => setAssignee(e.target.value);
-    const updateCount = () => setCount(count + 1);
 
 
     const saveTask = e => {
         e.preventDefault();
+
+        setCount(count + 1);
+        
         let newTasks = [...tasks, { title, completed: false }];
         setTasks(newTasks);
         e.target.reset();
@@ -45,7 +45,7 @@ export default function Main(props) {
                     <label>5</label>
                     <input type="radio" name="difficulty" value="5" id="harder" />
                 </fieldset>
-                <button type="submit" onSubmit={updateCount}>Add Task</button>
+                <button type="submit">Add Task</button>
             </form>
 
             <div id="todo-list">
