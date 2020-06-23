@@ -20,6 +20,17 @@ export default function Main() {
         e.target.reset();
     }
 
+    // Doesnt actually toggle yet, can only switch from false to true
+    const toggleCompletion = taskToUpdate => {
+        let updatedTasks = tasks.map((task, i) => {
+            if (i !== taskToUpdate){
+                return task;
+            }
+            return { ...task, completed: true };
+        });
+        setTasks(updatedTasks);
+    }
+
     return (
         <main>
             <form onSubmit={saveTask}>
@@ -52,9 +63,9 @@ export default function Main() {
                 <h3>Task List: {count} items to complete</h3>
                 <ul>
                     {tasks.map((task, index) => (
-                        <li>
+                        <li key={index}>
                             <span>{index + 1}. {task.title} - {assignee} Completed: {task.completed.toString()}  </span>
-                            <button>Toggle Completion</button>
+                            <button onClick={() => toggleCompletion(index)}>Toggle Completion</button>
                         </li>
                     ))}
                 </ul>
