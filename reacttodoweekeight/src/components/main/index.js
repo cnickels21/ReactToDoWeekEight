@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function Main(props) {
+    const { taskCount = 0 } = props;
+    let [count, setCount] = useState(taskCount);
 
     return (
         <main>
@@ -29,6 +31,12 @@ export default function Main(props) {
                 </fieldset>
                 <button type="submit">Add Task</button>
             </form>
+            <div id="task-list">
+                <h3>Task List: {count} items to complete</h3>
+                <ul>
+                    
+                </ul>
+            </div>
         </main>
     )
 }
