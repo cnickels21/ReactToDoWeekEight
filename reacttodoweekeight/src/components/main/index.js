@@ -2,14 +2,19 @@ import React, { useState, useEffect } from 'react';
 
 export default function Main(props) {
     const { taskCount = 0 } = props;
-    const { title = "" } = props;
+    const { taskTitle = "" } = props;
 
     let [count, setCount] = useState(taskCount);
+    let [title, setTitle] = useState(taskTitle);
     let [tasks, setTasks] = useState([]);
     let [assignee, setAssignee] = useState('');
 
+    const updateTitle = e => setTitle(e.target.title);
+
     const saveTask = e => {
         e.preventDefault();
+
+        setCount(count + 1);
 
         let newTasks = [...tasks, { title, completed: false }];
         setTasks(newTasks);
@@ -22,7 +27,7 @@ export default function Main(props) {
                 <h3>Add to your list!</h3>
                 <div id="task-item">
                     <label for="task">What's your task? </label>
-                    <input required type="text" default="What's your task?" id="task" ></input>
+                    <input required type="text" default="What's your task?" id="task" onChange={updateTitle}></input>
                 </div>
                 <div id="assigned-to">
                     <label for="assignee">Who's responsibility? </label>
