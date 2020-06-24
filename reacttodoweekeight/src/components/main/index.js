@@ -26,7 +26,7 @@ export default function Main() {
             if (i !== taskToUpdate){
                 return task;
             }
-            return { ...task, completed: true };
+            return { ...task, completed: !task.completed };
         });
         setTasks(updatedTasks);
     }
@@ -40,7 +40,7 @@ export default function Main() {
                     <input required type="text" id="task" onChange={updateTitle}></input>
                 </div>
                 <div id="assigned-to">
-                    <label>Who's responsibility? </label>
+                    <label>Whose responsibility? </label>
                     <input required type="text" id="assignee" onChange={updateAssignee}></input>
                 </div>
                 <fieldset>
