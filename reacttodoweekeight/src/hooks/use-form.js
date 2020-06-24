@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 export default function useForm(onSubmit) {
-    let [tasks, setTasks] = useState({});
+    let [tasks, setTasks] = useState([]);
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -16,10 +16,20 @@ export default function useForm(onSubmit) {
             [title]: value,
         }));
     }
+    const toggleCompletion = taskToUpdate => {
+        let updatedTasks = tasks.map((task, i) => {
+            if (i !== taskToUpdate){
+                return task;
+            }
+            return { ...task, completed: !task.completed, };
+        });
+        setTasks(updatedTasks);
+    }
 
     return [
         handleSubmit,
         handleChange,
+        toggleCompletion,
         tasks,
     ]
 }
