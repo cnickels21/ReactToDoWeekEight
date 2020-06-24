@@ -1,34 +1,31 @@
-import React, {useState} from 'react';
+import React from 'react';
+import useForm from '../../hooks/use-form';
 
 export default function Form(props) {
-    let [count, setCount] = useState(0);
-    let [title, setTitle] = useState("");
-    let [tasks, setTasks] = useState([]);
-    let [assignee, setAssignee] = useState('');
+    let [handleSubmit, handleChange, tasks] = useForm(saveFromHook);
 
-    const updateTitle = e => setTitle(e.target.value);
-    const updateAssignee = e => setAssignee(e.target.value);
+    let title = tasks.title;
+    let assignee = tasks.assignee;
 
-    const saveTask = e => {
-        e.preventDefault();
-
-        setCount(count + 1);
-
-        let newTasks = [...tasks, { title, completed: false, assignee }];
-        setTasks(newTasks);
-        e.target.reset();
+    function saveFromHook(formValues) {
+        props.createNewTask({
+            ...formValues,
+            title,
+            assignee,
+            completed: false,
+        })
     }
 
     return (
-        <form onSubmit={saveTask}>
+        <form onSubmit={handleSubmit}>
             <h3>Add to your list!</h3>
             <div id="task-item">
                 <label>What's your task? </label>
-                <input required type="text" id="task" onChange={updateTitle}></input>
+                <input required type="text" id="task" name="title" onChange={handleChange}></input>
             </div>
             <div id="assigned-to">
                 <label>Whose responsibility? </label>
-                <input required type="text" id="assignee" onChange={updateAssignee}></input>
+                <input required type="text" id="assignee" name="assignee" onChange={handleChange}></input>
             </div>
             <fieldset>
                 <legend>Difficulty</legend>
@@ -43,7 +40,7 @@ export default function Form(props) {
                 <label>5</label>
                 <input type="radio" name="difficulty" value="5" id="harder" />
             </fieldset>
-            <button type="submit">Add Task</button>
+            <button>Add Task</button>
         </form>
     )
 }

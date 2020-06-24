@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 export default function List(props) {
     let [tasks, setTasks] = useState([]);
-    let [count, setCount] = useState(0);
 
     const toggleCompletion = taskToUpdate => {
         let updatedTasks = tasks.map((task, i) => {
@@ -16,7 +15,7 @@ export default function List(props) {
 
     return (
         <div id="todo-list">
-            <h3>Task List: {count} items to complete</h3>
+            <h3>Task List: {tasks.length} items to complete</h3>
             <ul>
                 {tasks.map((task, index) => (
                     <li key={index}>

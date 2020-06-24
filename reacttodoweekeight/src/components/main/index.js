@@ -1,12 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Form from './form';
 import List from './list';
 
-export default function Main() {
+export default function Main(props) {
+    let [tasks, setTasks] = useState({});
+
+    let saveTask = newTask => {
+        let newTasks = [...tasks, newTask];
+        setTasks(newTasks);
+    }
 
     return (
         <main>
-            <Form />
+            <Form createNewTask={saveTask}/>
             <List />
         </main>
     )
