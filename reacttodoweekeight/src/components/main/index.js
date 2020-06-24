@@ -15,7 +15,7 @@ export default function Main() {
 
         setCount(count + 1);
 
-        let newTasks = [...tasks, { title, completed: false }];
+        let newTasks = [...tasks, { title, completed: false, assignee }];
         setTasks(newTasks);
         e.target.reset();
     }
@@ -26,7 +26,7 @@ export default function Main() {
             if (i !== taskToUpdate){
                 return task;
             }
-            return { ...task, completed: !task.completed };
+            return { ...task, completed: !task.completed, };
         });
         setTasks(updatedTasks);
     }
@@ -64,7 +64,7 @@ export default function Main() {
                 <ul>
                     {tasks.map((task, index) => (
                         <li key={index}>
-                            <span>{index + 1}. {task.title} - {assignee} Completed: {task.completed.toString()}  </span>
+                            <span>{index + 1}. {task.title} - {task.assignee} Completed: {task.completed.toString()}  </span>
                             <button onClick={() => toggleCompletion(index)}>Toggle Completion</button>
                         </li>
                     ))}
